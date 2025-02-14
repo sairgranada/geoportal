@@ -258,7 +258,7 @@ svg.leaflet-image-layer.leaflet-interactive path {
 /* visual tweaks */
 
 .leaflet-container {
-	background: #ddd;
+	background: #fff;
 	outline-offset: 1px;
 	}
 .leaflet-container a {
@@ -398,7 +398,7 @@ svg.leaflet-image-layer.leaflet-interactive path {
 	}
 .leaflet-control-layers-separator {
 	height: 0;
-	border-top: 1px solid #ddd;
+	border-top: 1px solid #fff;
 	margin: 5px -10px 5px -6px;
 	}
 
