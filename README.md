@@ -1,26 +1,25 @@
-# 🌍 GeoPortal - Plataforma de Información Geocientífica
+# 🌍 GeoPortal - Geoscientific Information Platform  
 
-## 📌 Descripción
-GeoPortal es una plataforma diseñada para almacenar, gestionar y visualizar información relacionada con **geología**, **geofísica** y disciplinas afines. Su propósito es facilitar el acceso a datos relevantes para **investigadores, estudiantes y profesionales** del área, proporcionando herramientas interactivas para la exploración y análisis de datos geocientíficos.
+## 📌 Description  
+GeoPortal is a platform designed to store, manage, and visualize information related to **geology**, **geophysics**, and related disciplines. Its purpose is to facilitate access to relevant data for **researchers, students, and professionals**, providing interactive tools for geoscientific data exploration and analysis.  
 
-## 🚀 Características
-✅ **Almacenamiento de Datos:** Repositorio centralizado para datos geológicos y geofísicos.  
-✅ **Visualización Interactiva:** Mapas dinámicos e integración con GIS.  
-✅ **Búsqueda Avanzada:** Filtros para encontrar información específica.  
-✅ **Colaboración:** Espacio para compartir información entre investigadores.  
-✅ **Exportación de Datos:** Descarga en múltiples formatos (**CSV, GeoJSON, etc.**).  
+## 🚀 Features  
+✅ **Data Storage:** Centralized repository for geological and geophysical data.  
+✅ **Interactive Visualization:** Dynamic maps and GIS integration.  
+✅ **Advanced Search:** Filters to find specific information.  
+✅ **Collaboration:** Space for researchers to share information.  
+✅ **Data Export:** Download in multiple formats (**CSV, GeoJSON, etc.**).  
 
-## 🤝 Contribuciones
-Las contribuciones son bienvenidas. Para contribuir:
-1️⃣ Hacer un **fork** del repositorio.  
-2️⃣ Crear una **nueva rama** para su funcionalidad o corrección.  
-3️⃣ Enviar un **pull request**.  
+## 🤝 Contributions  
+Contributions are welcome! To contribute:  
+1️⃣ **Fork** the repository.  
+2️⃣ Create a **new branch** for your feature or fix.  
+3️⃣ Submit a **pull request**.  
 
-## 📧 Contacto
-Para más información o sugerencias, puedes contactarnos en:
+## 📧 Contact  
+For more information or suggestions, you can contact us at:  
 📩 **Adrian Perez:** [aapm132630@gmail.com](mailto:aapm132630@gmail.com)  
 📩 **Sair Granada:** [sairgranada@gmail.com](mailto:sairgranada@gmail.com)  
 
-## 📜 Licencia
-🔒 Este proyecto está bajo la **licencia de Adrian Perez y Sair Granada**, estudiantes de la **Escuela de Geología de la Universidad Industrial de Santander**. 🌎
-
+## 📜 License  
+🔒 This project is licensed under **Adrian Perez and Sair Granada**, students of the **School of Geology at the Industrial University of Santander**. 🌎  
