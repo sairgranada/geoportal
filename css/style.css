@@ -1,0 +1,72 @@
+/* Estilos generales */
+* {
+    font-family: Roboto, sans-serif;
+    margin: 0;
+}
+
+img {
+    border: 0;
+    vertical-align: middle;
+    overflow-clip-margin: content-box;
+    overflow: clip;
+}
+
+/* Estilos de layout */
+header {
+    background-color: #f3f2de;
+    display: flex;
+    align-items: center;
+    height: 70px;
+    padding: 0 1rem;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Sombra suave */
+}
+
+.barra-geoportal {
+    flex: 1;
+}
+
+/* Tipografía y enlaces */
+nav a {
+    color: black;
+    text-decoration: none;
+}
+
+/* Estilo de listas */
+.menu {
+    display: flex;
+    list-style: none;
+    align-items: center;
+}
+
+.menu li {
+    padding: 5px 8px;
+}
+
+.icono-perfil {
+    width: 55px; 
+    height: 55px;
+    object-fit: cover; 
+    border-radius: 50%;
+}
+
+header {
+    background-color: #f3f2de;
+    display: flex;
+    align-items: center;
+    height: 70px;
+    padding: 0 1rem;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Sombra suave */
+}
+
+
+/* Imágenes específicas */
+.logo-geoportal img {
+    height: 60px;
+    align-items: center;
+}
+
+/* Map */
+#map {
+    border-inline: 1px;
+}
+
