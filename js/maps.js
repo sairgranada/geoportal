@@ -58,3 +58,56 @@ var locateControl = L.control.locate({
 setTimeout(() => {
     document.querySelector(".leaflet-control-locate a").setAttribute("title", "Buscar mi ubicación");
 }, 500);
+
+// Agregar proyección EPSG:3116 usando proj4leaflet
+var crs3116 = new L.Proj.CRS(
+    'EPSG:3116',
+    '+proj=tmerc +lat_0=4 +lon_0=-73 +k=0.9992 +x_0=500000 +y_0=2000000 +datum=WGS84 +units=m +no_defs',
+    {
+        resolutions: [4096, 2048, 1024, 512, 256, 128, 64, 32, 16, 8, 4, 2, 1]
+    }
+);
+
+// Estado inicial de las coordenadas
+var currentCRS = "EPSG:4326"; // Inicia en lat/lon
+
+// Crear el control de coordenadas compacto
+var coordControl = L.control({ position: "bottomleft" });
+
+coordControl.onAdd = function (map) {
+    var div = L.DomUtil.create("div", "leaflet-control-coordinates");
+    div.innerHTML = `
+        <span id="coordLabel">(EPSG:4326): </span>
+        <span id="coordValue">Lat: 0, Lon: 0</span>
+        <button id="toggleCRS">🔄</button>
+    `;
+    return div;
+};
+
+coordControl.addTo(map);
+
+// Función para transformar coordenadas a EPSG:3116
+function transformToEPSG3116(lat, lon) {
+    var point = proj4('EPSG:4326', 'EPSG:3116', [lon, lat]); 
+    return { x: point[0].toFixed(2), y: point[1].toFixed(2) };
+}
+
+// Evento para actualizar coordenadas según el sistema actual
+map.on("mousemove", function (e) {
+    var coordValue = document.getElementById("coordValue");
+
+    if (currentCRS === "EPSG:4326") {
+        coordValue.innerHTML = `Lat: ${e.latlng.lat.toFixed(6)}, Lon: ${e.latlng.lng.toFixed(6)}`;
+    } else {
+        var epsg3116 = transformToEPSG3116(e.latlng.lat, e.latlng.lng);
+        coordValue.innerHTML = `X: ${epsg3116.x}, Y: ${epsg3116.y}`;
+    }
+});
+
+// Evento para cambiar el sistema de coordenadas al hacer clic en el botón
+document.addEventListener("click", function (event) {
+    if (event.target.id === "toggleCRS") {
+        currentCRS = currentCRS === "EPSG:4326" ? "EPSG:3116" : "EPSG:4326";
+        document.getElementById("coordLabel").innerText = `Coordenada (${currentCRS}): `;
+    }
+});
