@@ -104,3 +104,10 @@ document.addEventListener("click", function (event) {
         document.getElementById("coordLabel").innerText = `(${currentCRS}): `;
     }
 });
+
+/* Escala */
+L.control.scale({
+    position: 'bottomright', // Asegura la posición
+    metric: true, // Activa unidades métricas
+    imperial: false // Desactiva unidades imperiales
+}).addTo(map);
