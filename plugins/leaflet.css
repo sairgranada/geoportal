@@ -655,27 +655,32 @@ svg.leaflet-image-layer.leaflet-interactive path {
 	.leaflet-control-coordinates {
 		background: rgba(50, 50, 50, 0.8); /* Fondo oscuro con transparencia */
 		color: #d1d1d1; /* Texto gris claro */
-		padding: 5px;
-		border-radius: 6px;
+		padding: 2px 3px;
+		border-radius: 2px;
+		font-size: 12px;
 		box-shadow: 0 2px 6px rgba(0,0,0,0.3);
-		min-width: 180px;
+		display: flex;
+		align-items: center;
+		gap: 10px;
 	}
 	
-	.leaflet-control-coordinates select {
-		width: 100%;
-		padding: 5px;
-		background: #333;
-		color: #d1d1d1;
+	#toggleCRS {
+		background: #444;
+		color: white;
 		border: none;
+		padding: 3px 3px;
 		border-radius: 4px;
-		font-size: 12px;
 		cursor: pointer;
+		font-size: 14px;
+		transition: background 0.2s;
 	}
 	
-	.leaflet-control-coordinates p {
-		margin: 5px 0 0;
-		font-size: 12px;
-		font-weight: bold;
+	#toggleCRS:hover {
+		background: #666;
+	}
+	
+	#toggleCRS i {
+		font-size: 13px;
 	}
 	
 

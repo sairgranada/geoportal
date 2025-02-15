@@ -59,55 +59,48 @@ setTimeout(() => {
     document.querySelector(".leaflet-control-locate a").setAttribute("title", "Buscar mi ubicación");
 }, 500);
 
-// Agregar proyección EPSG:3116 usando proj4leaflet
-var crs3116 = new L.Proj.CRS(
-    'EPSG:3116',
-    '+proj=tmerc +lat_0=4 +lon_0=-73 +k=0.9992 +x_0=500000 +y_0=2000000 +datum=WGS84 +units=m +no_defs',
-    {
-        resolutions: [4096, 2048, 1024, 512, 256, 128, 64, 32, 16, 8, 4, 2, 1]
-    }
-);
+// Definir EPSG:3116
+proj4.defs("EPSG:3116", "+proj=tmerc +lat_0=4.59620041666667 +lon_0=-74.0775079166667 +k=1 +x_0=1000000 +y_0=1000000 +ellps=GRS80 +towgs84=0,0,0,0,0,0,0 +units=m +no_defs +type=crs");
 
-// Estado inicial de las coordenadas
-var currentCRS = "EPSG:4326"; // Inicia en lat/lon
+// Definir EPSG:9377
+proj4.defs("EPSG:9377", "+proj=tmerc +lat_0=4.0 +lon_0=-73.0 +k=0.9992 +x_0=5000000 +y_0=2000000 +ellps=GRS80 +towgs84=0,0,0,0,0,0,0 +units=m +no_defs");
 
-// Crear el control de coordenadas compacto
+// Estado inicial: EPSG:3116
+var currentCRS = "EPSG:3116"; 
+
+// Crear el control de coordenadas
 var coordControl = L.control({ position: "bottomleft" });
 
 coordControl.onAdd = function (map) {
     var div = L.DomUtil.create("div", "leaflet-control-coordinates");
     div.innerHTML = `
-        <span id="coordLabel">(EPSG:4326): </span>
-        <span id="coordValue">Lat: 0, Lon: 0</span>
-        <button id="toggleCRS">🔄</button>
+        <span id="coordLabel">(EPSG:3116): </span>
+        <span id="coordValue">N: 0.000000, E: 0.000000</span>
+        <button id="toggleCRS" title="Cambiar proyección">
+            <i class="fas fa-sync-alt"></i>
+        </button>
     `;
     return div;
 };
 
 coordControl.addTo(map);
 
-// Función para transformar coordenadas a EPSG:3116
-function transformToEPSG3116(lat, lon) {
-    var point = proj4('EPSG:4326', 'EPSG:3116', [lon, lat]); 
-    return { x: point[0].toFixed(2), y: point[1].toFixed(2) };
+// Función para transformar coordenadas entre EPSG:3116 y EPSG:9377
+function transformCoords(lat, lon, targetCRS) {
+    return proj4("EPSG:4326", targetCRS, [lon, lat]);
 }
 
-// Evento para actualizar coordenadas según el sistema actual
+// Evento para actualizar coordenadas con formato "N: XXXX.XXXXXX, E: XXXX.XXXXXX"
 map.on("mousemove", function (e) {
     var coordValue = document.getElementById("coordValue");
-
-    if (currentCRS === "EPSG:4326") {
-        coordValue.innerHTML = `Lat: ${e.latlng.lat.toFixed(6)}, Lon: ${e.latlng.lng.toFixed(6)}`;
-    } else {
-        var epsg3116 = transformToEPSG3116(e.latlng.lat, e.latlng.lng);
-        coordValue.innerHTML = `X: ${epsg3116.x}, Y: ${epsg3116.y}`;
-    }
+    var point = transformCoords(e.latlng.lat, e.latlng.lng, currentCRS);
+    coordValue.innerHTML = `N: ${point[1].toFixed(6)}, E: ${point[0].toFixed(6)}`;
 });
 
-// Evento para cambiar el sistema de coordenadas al hacer clic en el botón
+// Evento para cambiar entre EPSG:3116 y EPSG:9377 al hacer clic en el botón
 document.addEventListener("click", function (event) {
     if (event.target.id === "toggleCRS") {
-        currentCRS = currentCRS === "EPSG:4326" ? "EPSG:3116" : "EPSG:4326";
-        document.getElementById("coordLabel").innerText = `Coordenada (${currentCRS}): `;
+        currentCRS = currentCRS === "EPSG:3116" ? "EPSG:9377" : "EPSG:3116";
+        document.getElementById("coordLabel").innerText = `(${currentCRS}): `;
     }
 });
