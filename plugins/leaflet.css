@@ -652,37 +652,64 @@ svg.leaflet-image-layer.leaflet-interactive path {
 
 
 /* Coordenadas */
-	.leaflet-control-coordinates {
-		background: rgba(50, 50, 50, 0.8); /* Fondo oscuro con transparencia */
-		color: #d1d1d1; /* Texto gris claro */
-		padding: 2px 3px;
-		border-radius: 2px;
-		font-size: 12px;
-		box-shadow: 0 2px 6px rgba(0,0,0,0.3);
-		display: flex;
-		align-items: center;
-		gap: 10px;
-	}
-	
-	#toggleCRS {
-		background: #444;
-		color: white;
-		border: none;
-		padding: 3px 3px;
-		border-radius: 4px;
-		cursor: pointer;
-		font-size: 14px;
-		transition: background 0.2s;
-	}
-	
-	#toggleCRS:hover {
-		background: #666;
-	}
-	
-	#toggleCRS i {
-		font-size: 13px;
-	}
-	
+.leaflet-control-coordinates {
+    color: rgb(37, 37, 37);
+    border-radius: 4px;
+    font-size: 12px;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    width: 330px; /* Fija un ancho mínimo para que no se mueva */
+}
+
+/* Contenedor de las coordenadas */
+#coordValue {
+    flex-grow: 1; /* Ocupa el espacio disponible sin empujar el botón */
+    text-align: left; /* Mantiene el texto alineado */
+    white-space: nowrap; /* Evita que el texto se parta en varias líneas */
+    overflow: hidden; /* Evita que los números empujen la caja */
+}
+
+/* Botón de cambiar coordenadas */
+#toggleCRS {
+    background: white;
+    color: black;
+    border: 1px solid #ccc;
+    padding: 3px 3px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 14px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 1px 5px rgba(0,0,0,0.65);
+    margin-left: auto; /* Alinea el botón a la derecha */
+}
+
+#toggleCRS:hover {
+    background: #f4f4f4;
+}
+
+#toggleCRS i {
+    font-size: 12px;
+}
+
+* Estilos de la escala */
+.leaflet-control-scale {
+    background: transparent; 
+    color: #555; 
+    box-shadow: none;
+    display: flex; 
+    flex-direction: row-reverse; 
+    align-items: center ; 
+    justify-content: flex-end; 
+    gap: 5px; 
+}
+
+/* Alinear el texto de la escala */
+.leaflet-control-scale-line {
+    text-align: right; 
+}
 
 /* Printing */
 
