@@ -659,15 +659,22 @@ svg.leaflet-image-layer.leaflet-interactive path {
     display: flex;
     align-items: center;
     gap: 5px;
-    width: 330px; /* Fija un ancho mínimo para que no se mueva */
+    justify-content: flex-start; /* Alinea los elementos a la izquierda */
 }
 
 /* Contenedor de las coordenadas */
 #coordValue {
-    flex-grow: 1; /* Ocupa el espacio disponible sin empujar el botón */
-    text-align: left; /* Mantiene el texto alineado */
-    white-space: nowrap; /* Evita que el texto se parta en varias líneas */
-    overflow: hidden; /* Evita que los números empujen la caja */
+width: 220px;
+}
+
+#coordLabel {
+width: 75px;
+}
+#coordValue, #coordLabel {
+    background-color: rgba(255, 255, 255, 0.6); /* Fondo blanco semitransparente */
+    padding: 2px 4px;
+    border-radius: 2px;
+    text-align: left; /* Alinea el texto a la izquierda */
 }
 
 /* Botón de cambiar coordenadas */
@@ -693,6 +700,7 @@ svg.leaflet-image-layer.leaflet-interactive path {
 #toggleCRS i {
     font-size: 12px;
 }
+
 
 * Estilos de la escala */
 .leaflet-control-scale {
