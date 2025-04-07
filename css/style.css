@@ -1,0 +1,150 @@
+/* Estilos generales */
+* {
+    font-family: Roboto, sans-serif;
+    margin: 0;
+}
+
+html, body {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+}
+
+img {
+    border: 0;
+    vertical-align: middle;
+    overflow-clip-margin: content-box;
+    overflow: clip;
+}
+
+/* Estilos de layout */
+header {
+    background-color: #f3f2de;
+    display: flex;
+    align-items: center;
+    height: 70px;
+    padding: 0 1rem;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Sombra suave */
+}
+
+.barra-geoportal {
+    flex: 1;
+}
+
+/* Tipografía y enlaces */
+nav a {
+    color: black;
+    text-decoration: none;
+    font-size: 15px;
+}
+
+/* Estilo de listas */
+.menu {
+    display: flex;
+    list-style: none;
+    align-items: center;
+}
+
+.menu li {
+    padding: 5px 8px;
+}
+
+.icono-perfil {
+    width: 45px; 
+    height: 45px;
+    object-fit: cover; 
+    border-radius: 50%;
+}
+
+header {
+    background-color: #f3f2de;
+    display: flex;
+    align-items: center;
+    height: 70px;
+    padding: 0 1rem;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Sombra suave */
+}
+
+
+/* Imágenes específicas */
+.logo-geoportal img {
+    height: 60px;
+    align-items: center;
+}
+
+/* Map */
+
+#map {
+    flex-grow: 1; /* Hace que el mapa ocupe todo el espacio disponible */
+    width: 100%;
+    height: calc(100vh - 70px);
+    border: none;
+}
+
+.capa-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: #f8f8f8;
+    padding: 5px;
+    border-radius: 4px;
+    font-size: 14px;
+    margin-bottom: 5px;
+}
+
+/* Contenedor de los botones alineados a la derecha */
+.botones-container {
+    display: flex;
+    gap: 5px;
+}
+
+/* Evita que el botón de "Centrar" tenga hover azul */
+.no-hover:hover {
+    color: inherit !important;
+}
+
+.leyenda {
+    background: #ffffff00; /* Mismo color que el cuadro de capas */
+    border: 1.5px solid #eeeeee;
+    border-top: none; /* Sin borde arriba para que se vea unido */
+    border-radius: 0px 0px 4px 4px; /* Bordes redondeados solo abajo */
+    padding: 10px 5px 2px 7px; /* Arriba, Derecha, Abajo, Izquierda */
+    font-size: 12px; /* Letra más pequeña */
+    width: calc(100% - 14px); /* Ajuste para que no sobresalga */
+    margin-top: -9px;
+}
+
+.leyenda-content {
+    display: flex;
+    flex-direction: column;
+}
+
+.leyenda-item {
+    display: flex;
+    align-items: center;
+    margin-bottom: 5px;
+}
+
+
+.leyenda-texto {
+    font-size: 12px;
+    color: #333;
+}
+
+.leyenda-simbolo {
+    display: inline-block;
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    margin-right: 5px;
+    vertical-align: middle;
+}
+
+.leyenda-simbolo-linea {
+    display: inline-block;
+    width: 10px;
+    height: 1px;
+    margin-right: 5px;
+    vertical-align: middle;
+}
+
