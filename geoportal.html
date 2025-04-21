@@ -1,49 +1,62 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Geoportal | Inicio</title>
-    
-    <link rel="stylesheet" type="text/css" href="css/style.css">
-    <link rel="stylesheet" href="plugins/leaflet.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet-locatecontrol/0.81.0/L.Control.Locate.min.css" />
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
 
+    <!-- ====== Estilos propios ====== -->
+    <link rel="stylesheet" href="css/style.css" />
+
+    <!-- ====== Leaflet & plugins ====== -->
+    <link rel="stylesheet" href="plugins/leaflet.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet-locatecontrol/0.81.0/L.Control.Locate.min.css" />
+
+    <!-- ====== Íconos ====== -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" />
+
+    <!-- ====== Scripts principales ====== -->
     <script src="plugins/leaflet.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet-locatecontrol/0.81.0/L.Control.Locate.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/proj4js/2.9.0/proj4.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/proj4leaflet/1.0.2/proj4leaflet.js"></script>
-
 </head>
+
 <body>
 
+    <!-- ====== Encabezado ====== -->
     <header>      
         <div class="barra-geoportal">
-            <a class="logo-geoportal" href="">
-                <img alt="Logo GEOportal" src="/img/logo-geoportal.png">
+            <a class="logo-geoportal" href="#">
+                <img src="img/logo-geoportal.png" alt="Logo GEOportal" />
             </a>
         </div>
         <nav>
             <ul class="menu">
                 <li><a href="#">Inicio</a></li>
                 <li><a href="#">Plataforma</a></li>
-                <li><a href="#"><img src="/img/user.jpg" alt="user" class="icono-perfil"></a></li>
-                
+                <li><a href="#"><img src="img/user.jpg" alt="user" class="icono-perfil" /></a></li>
             </ul>
         </nav>
     </header>
 
-    <!-- Search Panel-->
-    
+    <!-- ====== Sidebar ====== -->
+    <div id="sidebar">
+        <div class="sidebar-header">Consultas</div>
+        <div class="sidebar-content">
+            <input type="text" id="busqueda" placeholder="¿Qué estás buscando?" />
+            <div id="capasSidebarLista">
+                
+            </div>
+        </div>
+    </div>
 
-    <!-- Map -->
+    <!-- ====== Contenedor del Mapa ====== -->
     <div id="map"></div>
-    <script src="js/punto.js"></script>
-    <script src="js/linea.js"></script>
-    <script src="js/maps.js"></script>
 
+    <!-- ====== Scripts JS propios ====== -->
+    <script src="js/maps.js"></script>
+    <script src="js/sidebar.js"></script>
 
 </body>
 </html>

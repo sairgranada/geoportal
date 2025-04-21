@@ -1,0 +1,8 @@
+﻿{
+  "nombre": "Sitios de Interés",
+  "descripcion": "Ubicación de puntos representativos de municipios del área de estudio.",
+  "cubrimiento": "Incluye puntos en Bucaramanga, San Gil, Piedecuesta, Girón, Floridablanca, Socorro, Lebrija, Ocamonte, Losapatoca y Cúcuta.",
+  "sistema_referencia": "MAGNA-SIRGAS",
+  "licencia": "CC BY 4.0",
+  "preview": "preview.jpg"
+}

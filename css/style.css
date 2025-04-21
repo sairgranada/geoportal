@@ -1,150 +1,75 @@
-/* Estilos generales */
-* {
-    font-family: Roboto, sans-serif;
-    margin: 0;
-}
+/* ========== Reset y Tipografía ========== */
+* { font-family: Roboto, sans-serif; margin: 0; }
+html, body { margin: 0; padding: 0; height: 100%; }
+img { border: 0; vertical-align: middle; overflow: clip; }
 
-html, body {
-    margin: 0;
-    padding: 0;
-    height: 100%;
-}
+/* ========== Header y Navegación ========== */
+header { background-color: #f3f2de; display: flex; align-items: center; height: 70px; padding: 0 1rem; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); }
+.barra-geoportal { flex: 1; }
+.logo-geoportal img { height: 60px; }
+nav a { color: black; text-decoration: none; font-size: 15px; }
+.menu { display: flex; list-style: none; align-items: center; }
+.menu li { padding: 5px 8px; }
+.icono-perfil { width: 45px; height: 45px; object-fit: cover; border-radius: 50%; }
 
-img {
-    border: 0;
-    vertical-align: middle;
-    overflow-clip-margin: content-box;
-    overflow: clip;
-}
+/* ========== Mapa ========== */
+#map { position: absolute; left: 350px; width: calc(100% - 350px); height: calc(100vh - 70px); z-index: 0; }
 
-/* Estilos de layout */
-header {
-    background-color: #f3f2de;
-    display: flex;
-    align-items: center;
-    height: 70px;
-    padding: 0 1rem;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Sombra suave */
-}
+/* ========== Sidebar ========== */
+#sidebar { position: absolute; top: 70px; left: 0; width: 310px; height: calc(100vh - 300px); background: #fff; overflow-y: auto; padding: 20px; z-index: 1000; }
+.sidebar-header { font-size: 20px; font-weight: 600; color: #333; margin-bottom: 15px; border-bottom: 1px solid #ccc; padding-bottom: 8px; }
+.sidebar-content label { display: block; margin-top: 15px; margin-bottom: 5px; font-weight: 500; color: #444; }
+.sidebar-content input, .sidebar-content select { width: 100%; padding: 8px; border: 1px solid #ccc; border-radius: 6px; box-sizing: border-box; font-size: 14px; }
+#capasLista { margin-top: 20px; }
 
-.barra-geoportal {
-    flex: 1;
-}
+.capa-item-sidebar {display:block;background:#fff;border-radius:8px;padding:15px;margin-bottom:20px;box-shadow:0 2px 8px rgba(0,0,0,0.1);font-family:Arial,sans-serif;width:100%;box-sizing:border-box; margin-top: 10px;}
+.capa-item-sidebar h4 {margin-top:0;font-size:18px;}
+.capa-preview {width:100%;border-radius:6px;margin-bottom:10px;display:block;}
+.capa-detalle p {font-size:14px;margin:6px 0;}
+.agregar-btn {margin-top:10px;padding:8px 12px;background-color:#0066cc;color:white;border:none;border-radius:4px;cursor:pointer;width:fit-content;}
+.capa-enlaces {margin-top:10px;font-size:13px;}
 
-/* Tipografía y enlaces */
-nav a {
-    color: black;
-    text-decoration: none;
-    font-size: 15px;
-}
-
-/* Estilo de listas */
-.menu {
-    display: flex;
-    list-style: none;
-    align-items: center;
-}
-
-.menu li {
-    padding: 5px 8px;
-}
-
-.icono-perfil {
-    width: 45px; 
-    height: 45px;
-    object-fit: cover; 
-    border-radius: 50%;
-}
-
-header {
-    background-color: #f3f2de;
-    display: flex;
-    align-items: center;
-    height: 70px;
-    padding: 0 1rem;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Sombra suave */
-}
+/* ========== Capas / Herramientas / Panel flotante ========== */
+.capa-item { display: flex; justify-content: space-between; align-items: center; background: #eeeeee; padding: 5px; border-radius: 4px 4px 0 0; font-size: 14px; margin-bottom: 5px; }
+.botones-container { display: flex; gap: 5px; }
+.layersToolBtn { background: none; border: none; cursor: pointer; font-size: 14px; color: #333; margin-left: 5px; }
+.layersToolBtn:hover { color: #007BFF; }
+.no-hover:hover { color: inherit !important; }
+.boton-home, .capa-toggle-btn { background-color: white; width: 30px; height: 30px; display: flex; justify-content: center; align-items: center; cursor: pointer; border-radius: 4px; font-size: 16px; }
+.capa-item-sidebar {display:block; background:#fff; border-radius:8px; padding:15px; margin-bottom:20px; box-shadow:0 2px 8px rgba(0,0,0,0.1); font-family:Arial,sans-serif; width:100%; box-sizing:border-box;}
+.capa-item-sidebar h4 {margin-top:0; text-align: center; font-size:18px;}
+.capa-preview {width:100%; border-radius:6px; margin-bottom:10px; display:block;}
+.capa-detalle p {font-size:14px; margin:6px 0;}
+.capa-detalle .nota {font-size:13px; white-space:pre-line;}
+.capa-enlaces {margin-top:10px; font-size:13px;}
+.agregar-btn { margin: auto; display: block; height: 27px; width: 150px; padding: 10px 0; color: white; border: none; border-radius: 6px; font-size: 14px; font-weight: 500; cursor: pointer; text-align: center; margin-top: 10px; }
+.agregar-btn.btn-eliminar { background-color: #dc3545 !important; }
 
 
-/* Imágenes específicas */
-.logo-geoportal img {
-    height: 60px;
-    align-items: center;
-}
 
-/* Map */
+/* ========== Leyenda ========== */
+.leyenda { background: #f9f9f9; padding: 8px; border-left: 4px solid #999; margin-top: 5px; font-size: 13px; display: none; border-radius: 0 0 4px 4px; }
+.leyenda-item { display: flex; align-items: center; margin-bottom: 4px; }
+.leyenda-simbolo, .leyenda-simbolo-linea { margin-right: 5px; display: inline-block; }
+.leyenda-simbolo { width: 15px; height: 15px; border-radius: 3px; }
+.leyenda-simbolo-linea { width: 20px; height: 2px; border-top: 3px solid; }
+.leyenda-texto { flex: 1; font-size: 13px; }
 
-#map {
-    flex-grow: 1; /* Hace que el mapa ocupe todo el espacio disponible */
-    width: 100%;
-    height: calc(100vh - 70px);
-    border: none;
-}
+/* ========== Botones Agregar y Tarjetas ========== */
+.capa-card { display: flex; background: #fff; border: 1px solid #ccc; border-radius: 6px; margin-bottom: 10px; padding: 8px; gap: 10px; align-items: center; }
+.capa-thumb { width: 60px; height: 60px; object-fit: cover; border-radius: 4px; }
+.agregar-btn { background-color: #28a745; color: white; border: none; padding: 4px 10px; font-size: 13px; border-radius: 4px; cursor: pointer; }
+.agregar-btn:disabled { background-color: #aaa; cursor: not-allowed; }
 
-.capa-item {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    background: #f8f8f8;
-    padding: 5px;
-    border-radius: 4px;
-    font-size: 14px;
-    margin-bottom: 5px;
-}
+/* ========== Panel Capas ========== */
+.panelLayers { position: absolute; top: 80px; right: 55px; background: #fff; padding: 0; border-radius: 0; box-shadow: 0 4px 10px rgba(0,0,0,0.3); width: 310px; z-index: 1000; font-family: Arial, sans-serif; font-size: 14px; display: none; }
+.panel-header { display: flex; justify-content: space-between; align-items: center; background: black; color: white; width: 100%; padding: 10px; box-sizing: border-box; }
+.panel-header button { background: none; border: none; cursor: pointer; font-size: 16px; color: #fff; }
+.panel-body { display: block; padding: 12px; }
+.panel-body label { display: block; margin: 5px 0; }
+.panel-body select { width: 100%; padding: 5px; border-radius: 4px; border: 1px solid #ccc; margin-bottom: 10px; }
 
-/* Contenedor de los botones alineados a la derecha */
-.botones-container {
-    display: flex;
-    gap: 5px;
-}
-
-/* Evita que el botón de "Centrar" tenga hover azul */
-.no-hover:hover {
-    color: inherit !important;
-}
-
-.leyenda {
-    background: #ffffff00; /* Mismo color que el cuadro de capas */
-    border: 1.5px solid #eeeeee;
-    border-top: none; /* Sin borde arriba para que se vea unido */
-    border-radius: 0px 0px 4px 4px; /* Bordes redondeados solo abajo */
-    padding: 10px 5px 2px 7px; /* Arriba, Derecha, Abajo, Izquierda */
-    font-size: 12px; /* Letra más pequeña */
-    width: calc(100% - 14px); /* Ajuste para que no sobresalga */
-    margin-top: -9px;
-}
-
-.leyenda-content {
-    display: flex;
-    flex-direction: column;
-}
-
-.leyenda-item {
-    display: flex;
-    align-items: center;
-    margin-bottom: 5px;
-}
-
-
-.leyenda-texto {
-    font-size: 12px;
-    color: #333;
-}
-
-.leyenda-simbolo {
-    display: inline-block;
-    width: 10px;
-    height: 10px;
-    border-radius: 50%;
-    margin-right: 5px;
-    vertical-align: middle;
-}
-
-.leyenda-simbolo-linea {
-    display: inline-block;
-    width: 10px;
-    height: 1px;
-    margin-right: 5px;
-    vertical-align: middle;
-}
+/* ========== Clases utilitarias ========== */
+.text-green { color: green; }
+.text-gray { color: gray; }
 
