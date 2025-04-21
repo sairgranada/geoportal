@@ -10,11 +10,6 @@ GeoPortal is a platform designed to store, manage, and visualize information rel
 ✅ **Collaboration:** Space for researchers to share information.  
 ✅ **Data Export:** Download in multiple formats (**CSV, GeoJSON, etc.**).  
 
-## 🤝 Contributions  
-Contributions are welcome! To contribute:  
-1️⃣ **Fork** the repository.  
-2️⃣ Create a **new branch** for your feature or fix.  
-3️⃣ Submit a **pull request**.  
 
 ## 📧 Contact  
 For more information or suggestions, you can contact us at:  
