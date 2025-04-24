@@ -1,6 +1,6 @@
 const rutasCapas = ["layers/puntos_sitios"];
 const contenedorCapas = document.getElementById("capasSidebarLista");
-const capasCargadas = {}; // Aquí guardamos las capas por ruta
+const capasCargadas = {};
 
 rutasCapas.forEach(ruta => {
     fetch(`${ruta}/info.json`)
@@ -42,23 +42,17 @@ rutasCapas.forEach(ruta => {
 
                     // Cambiar el texto y el color del botón a verde
                     btnAgregarCapa.innerText = "Agregar al mapa";
-                    btnAgregarCapa.style.backgroundColor = "#28a745"; // Verde para agregar
+                    btnAgregarCapa.style.backgroundColor = "#28a745";
 
                 } else {
-                    // Ver si ya fue creada antes o cargarla desde JS
                     if (capasCargadas[ruta]) {
-                        // Ya está cargada, solo agregar al mapa y panel
                         map.addLayer(capasCargadas[ruta]);
                         agregarCapa(info.nombre, capasCargadas[ruta], info.tipo || "punto", true, document.getElementById("capasLista"));
-
-                        // Cambiar el texto y el color del botón a rojo para eliminar
                         btnAgregarCapa.innerText = "Eliminar del mapa";
-                        btnAgregarCapa.style.backgroundColor = "#dc3545"; // Rojo para eliminar
+                        btnAgregarCapa.style.backgroundColor = "#dc3545"; 
                     } else {
-                        // Cargar y guardar
                         const script = document.createElement("script");
                         script.src = `${ruta}/layer.js`;
-
                         script.onload = function () {
                             if (typeof layerGeojson !== "undefined") {
                                 capasCargadas[ruta] = layerGeojson;
@@ -66,10 +60,8 @@ rutasCapas.forEach(ruta => {
                                 map.addLayer(layerGeojson);
 
                                 agregarCapa(info.nombre, layerGeojson, info.tipo || "punto", true, document.getElementById("capasLista"));
-
-                                // Cambiar el texto y el color del botón a rojo para eliminar
                                 btnAgregarCapa.innerText = "Eliminar del mapa";
-                                btnAgregarCapa.style.backgroundColor = "#dc3545"; // Rojo para eliminar
+                                btnAgregarCapa.style.backgroundColor = "#dc3545";
                             } else {
                                 console.error("layerGeojson no definido en", ruta);
                             }

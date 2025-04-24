@@ -9,7 +9,7 @@ fetch("template/panelCapas.html")
 
 // Crear un objeto mapa centrado en Colombia con zoom adecuado
 var map = L.map("map", {
-    minZoom: 2.5 // Evita que el mapa se aleje demasiado y queden bandas blancas
+    minZoom: 2.5 
 }).setView([4.5709, -74.2973], 6);
 
 
@@ -228,7 +228,7 @@ function agregarCapa(nombre, capa, tipo = "punto", activaPorDefecto = false, con
 }
 
 
-// === Panel flotante de mapas base y capas ===
+// Panel flotante de mapas base y capas 
 var capasMenu = L.DomUtil.create("div", "panelLayers");
 capasMenu.id = "panelLayers";
 capasMenu.style.display = "none";
@@ -288,5 +288,3 @@ mapaBaseSelect.onchange = function () {
     });
     mapasBase[mapaBaseSelect.value].addTo(map);
 };
-
-
