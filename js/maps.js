@@ -109,7 +109,6 @@ var mapasBase = {
 };
 
 
-
 function agregarCapa(nombre, capa, tipo = "punto", activaPorDefecto = false, contenedorDestino) {
     const capaElemento = document.createElement("div");
     capaElemento.className = "capa-item";
@@ -238,7 +237,6 @@ capasMenu.innerHTML = `
     <div class="panel-body"><label>Mapa base</label><select id="mapaBaseSelect"></select><label>Capas activas</label><div id="capasLista"></div></div>
 `;
 
-// Panel flotante arrastrable
 let isDragging = false, startX, startY;
 document.getElementById("panelHeader").addEventListener("mousedown", function (e) {
     isDragging = true;
@@ -288,3 +286,154 @@ mapaBaseSelect.onchange = function () {
     });
     mapasBase[mapaBaseSelect.value].addTo(map);
 };
+
+
+// Panel Herramientas
+var herramientasMenu = L.DomUtil.create("div", "panelLayers");
+herramientasMenu.id = "panelHerramientas";
+herramientasMenu.style.display = "none";
+document.body.appendChild(herramientasMenu);
+
+let htmlOriginal = ""; // para guardar el HTML limpio
+
+// Cargar el archivo HTML de forma asíncrona
+fetch('templates/panelHerramientas.html')
+  .then(response => response.text())
+  .then(html => {
+    htmlOriginal = html; // Guardamos el HTML original
+    herramientasMenu.innerHTML = htmlOriginal;
+
+    setUpPanel(); // Configura todo
+
+  })
+  .catch(err => {
+    console.log("Error al cargar el archivo HTML: ", err);
+  });
+
+// Función principal para configurar eventos
+function setUpPanel() {
+  setUpDrag();
+  setUpEventListeners();
+  asignarEventosCerrarPanel();
+}
+
+// Arrastrar el panel
+function setUpDrag() {
+  let dragging = false, offsetX, offsetY;
+  document.getElementById("panelHeaderHerramientas").addEventListener("mousedown", function (e) {
+    dragging = true;
+    offsetX = e.clientX - herramientasMenu.offsetLeft;
+    offsetY = e.clientY - herramientasMenu.offsetTop;
+  });
+  document.addEventListener("mousemove", function (e) {
+    if (dragging) {
+      herramientasMenu.style.left = e.clientX - offsetX + "px";
+      herramientasMenu.style.top = e.clientY - offsetY + "px";
+    }
+  });
+  document.addEventListener("mouseup", function () {
+    dragging = false;
+  });
+}
+
+// Botón cerrar
+function asignarEventosCerrarPanel() {
+  const cerrarBtn = document.getElementById("closeHerramientasBtn") || document.getElementById("closeLayersBtn");
+  if (cerrarBtn) {
+    cerrarBtn.addEventListener("click", function () {
+      herramientasMenu.style.display = "none";
+    });
+  }
+}
+
+// Configurar botones del menú principal
+function setUpEventListeners() {
+  const btnImportar = document.getElementById("btnImportarDatos");
+  const btnImprimir = document.getElementById("btnImprimirMapa");
+
+  if (btnImportar) {
+    btnImportar.onclick = function () {
+      herramientasMenu.innerHTML = `
+        <div class="panel-header" id="panelHeaderHerramientas">
+            <span>Fuente de Datos</span>
+            <button id="closeHerramientasBtn">X</button>
+        </div>
+        <div class="panel-body">
+            <h4>Desde un archivo local</h4>
+            <label for="formatoArchivo">Formato</label>
+            <select id="formatoArchivo">
+                <option value="shp">ESRI Shapefile</option>
+            </select>
+            <label for="archivoDato">Archivo</label>
+            <input type="file" id="archivoDato" accept=".zip">
+            <hr>
+            <button id="btnRegresar">Regresar</button>
+        </div>
+      `;
+      document.getElementById("btnRegresar").onclick = function () {
+        herramientasMenu.innerHTML = htmlOriginal;
+        setUpPanel();
+      };
+      setUpDrag();
+      asignarEventosCerrarPanel();
+    };
+  }
+
+  if (btnImprimir) {
+    btnImprimir.onclick = function () {
+      herramientasMenu.innerHTML = `
+        <div class="panel-header" id="panelHeaderHerramientas">
+            <span>Imprimir Mapa</span>
+            <button id="closeHerramientasBtn">X</button>
+        </div>
+        <div class="panel-body">
+            <label for="tituloImpresion">Título</label>
+            <input type="text" id="tituloImpresion" value="PRUEBA">
+            <label for="tamanioImpresion">Tamaño</label>
+            <select id="tamanioImpresion">
+                <option value="CurrentSize">Sólo mapa</option>
+            </select>
+            <label for="formatoImpresion">Formato</label>
+            <select id="formatoImpresion">
+                <option value="pdf">PDF</option>
+            </select>
+            <label for="calidadDPI">Calidad DPI</label>
+            <select id="calidadDPI">
+                <option value="75">75</option>
+                <option value="150">150</option>
+                <option value="300">300</option>
+            </select>
+            <br>
+            <button id="btnRegresar">Regresar</button>
+        </div>
+      `;
+      document.getElementById("btnRegresar").onclick = function () {
+        herramientasMenu.innerHTML = htmlOriginal;
+        setUpPanel();
+      };
+      setUpDrag();
+      asignarEventosCerrarPanel();
+    };
+  }
+}
+
+// Botón flotante (toggle panel)
+var herramientasControlButton = L.control({ position: "topright" });
+herramientasControlButton.onAdd = function () {
+  var div = L.DomUtil.create("div", "leaflet-bar leaflet-control leaflet-control-custom herramientas-toggle-btn");
+  div.innerHTML = '<i class="fa-solid fa-tools"></i>';
+  div.title = "Herramientas";
+  div.onclick = function () {
+    if (herramientasMenu.style.display === "none") {
+      herramientasMenu.innerHTML = htmlOriginal;
+      setUpPanel();
+      herramientasMenu.style.display = "block";
+    } else {
+      herramientasMenu.style.display = "none";
+    }
+  };
+  return div;
+};
+herramientasControlButton.addTo(map);
+
+
